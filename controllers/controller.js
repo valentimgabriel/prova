@@ -47,7 +47,7 @@ controller.getById = (req,res)=>{
   }
 };
 
-controller.NovaPessoa = (req,res)=>{
+controller.createPessoa = (req,res)=>{
   const novaPessoa = req.body
   novaPessoa.id = tamanho + 1
   lista.push(novaPessoa)
@@ -64,8 +64,17 @@ controller.putPessoa = (req,res)=>{
   }else{
     res.status(404).sendFile(path.resolve(__dirname+"/../views/notfound.html"))
   }
-}
+};
 
+controller.deletePessoa = (req,res)=>{
+  const pessoaIndice = lista.findIndex(p => p.id == req.params.id);
+  if (pessoaIndice >= 0) {
+    lista.splice(pessoaIndice, 1);
+    res.status(200).send("OK")
+  }else{
+    res.status(404).sendFile(path.resolve(__dirname+"/../views/notfound.html"))
+  }
+};
 
 
 
