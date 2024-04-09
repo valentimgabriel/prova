@@ -54,7 +54,17 @@ controller.NovaPessoa = (req,res)=>{
   res.status(200).redirect("/pessoas")
 };
 
-
+controller.putPessoa = (req,res)=>{
+  pessoaIndice = lista.findIndex(p => p.id == req.params.id)
+  console.log(pessoaIndice)
+  if(pessoaIndice >= 0){
+    const pessoaAtualizada = req.body;
+    lista[pessoaIndice] = pessoaAtualizada;
+    res.status(200).send("OK")
+  }else{
+    res.status(404).sendFile(path.resolve(__dirname+"/../views/notfound.html"))
+  }
+}
 
 
 
