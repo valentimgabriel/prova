@@ -29,6 +29,19 @@ var lista = [
   }
  ];
 
+ controller.getAll = (req,res)=>{
+  res.status(200).send(lista)
+
+ };
+ controller.getPessoaById = (req,res)=>{
+  item = lista.find(i => i.id == req.params.id)
+
+  if(item){
+    res.status(200).send(item)
+  } else{
+    res.status(404).sendFile(path.resolve(__dirname+"/../views/notfound.html"))
+  }
+}
 
 
 module.exports = controller
