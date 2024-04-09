@@ -2,6 +2,8 @@ var path = require('path');
 
 const controller = {}
 
+let tamanho = 4
+
 var lista = [
   {
   "id": 1,
@@ -27,13 +29,15 @@ var lista = [
   "preco": 99.99,
   "cores": ["preto", "marrom"]
   }
- ];
+];
 
- controller.getAll = (req,res)=>{
+controller.getAll = (req,res)=>{
   res.status(200).send(lista)
 
  };
- controller.getPessoaById = (req,res)=>{
+
+
+controller.getById = (req,res)=>{
   item = lista.find(i => i.id == req.params.id)
 
   if(item){
@@ -41,7 +45,20 @@ var lista = [
   } else{
     res.status(404).sendFile(path.resolve(__dirname+"/../views/notfound.html"))
   }
-}
+};
+
+controller.NovaPessoa = (req,res)=>{
+  const novaPessoa = req.body
+  novaPessoa.id = tamanho + 1
+  lista.push(novaPessoa)
+  res.status(200).redirect("/pessoas")
+};
+
+
+
+
+
+
 
 
 module.exports = controller
