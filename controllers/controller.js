@@ -34,8 +34,7 @@ var lista = [
 controller.getAll = (req,res)=>{
   res.status(200).send(lista)
 
- };
-
+};
 
 controller.getById = (req,res)=>{
   item = lista.find(i => i.id == req.params.id)
@@ -65,7 +64,6 @@ controller.putPessoa = (req,res)=>{
     res.status(404).sendFile(path.resolve(__dirname+"/../views/notfound.html"))
   }
 };
-
 controller.deletePessoa = (req,res)=>{
   const pessoaIndice = lista.findIndex(p => p.id == req.params.id);
   if (pessoaIndice >= 0) {
